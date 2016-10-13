@@ -43,7 +43,7 @@ public class KafkaProducerService {
       */
       props = new Properties();
       props.put("zookeeper.connect","localhost:2181");
-      props.put("bootstrap.servers", "localhost:9092");
+      props.put("bootstrap.servers", "172.17.0.5:9092");
 
       props.put("acks", "0");
       props.put("retries", 0);
