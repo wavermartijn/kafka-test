@@ -45,8 +45,9 @@ public class KafkaProducerService {
       props.put("zookeeper.connect","localhost:2181");
       props.put("bootstrap.servers", "172.17.0.5:9092");
 
-      props.put("acks", "0");
-      props.put("retries", 0);
+      props.put("acks", "all");
+      props.put("retries", 1);
+      props.put("auto.commit.interval.ms", "1000");
       props.put("batch.size", 10);
       props.put("linger.ms", 5);
       props.put("buffer.memory", 33554432);
@@ -63,7 +64,7 @@ public class KafkaProducerService {
     }
     log.info("send one");
     producer.flush();
-    producer.close();
+    //producer.close();
 
    // producer.flush();
    // producer.close();
