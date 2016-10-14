@@ -1,7 +1,6 @@
 package org.wavermartijn;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.Producer;
 import org.apache.kafka.clients.producer.ProducerRecord;
@@ -18,7 +17,6 @@ public class KafkaProducerService {
   private final String topic = "";
   private Properties props = null;
   Producer<String, String> producer = null;
-  KafkaConsumer consumer = null;
 
 
   @PostConstruct
@@ -36,6 +34,5 @@ public class KafkaProducerService {
     }
     log.info("send one");
     producer.flush();
-
   }
 }
