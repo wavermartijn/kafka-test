@@ -28,7 +28,7 @@ public class KafkaProducerService {
     producer = new KafkaProducer<>(props);
   }
 
-  public void produceMessage() throws IOException {
+  public void produceTestMessages() throws IOException {
 
     log.info("going to send some test messages");
     for (int i = 0; i < 100; i++) {
