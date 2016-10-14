@@ -21,65 +21,34 @@ public class KafkaProducerService {
 
   public KafkaProducerService() {
 
-
   }
 
   public void produceMessage() throws IOException {
     if (props == null) {
-      /*InputStream propsStream = KafkaProducerService.class.getResourceAsStream("/producer.props");
-      props = new Properties();
-      props.load(propsStream);
-      props.put("value.deserializer", StringDeserializer.class.getName());
-      props.put("zookeeper.connect","localhost:2181");
-      props.put("broker.id","0");
-      props.put("zk.connect","127.0.0.1:2181");
-      props.put("bootstrap.servers","127.0.0.1:9092");
-      props.put("broker.list","0:127.0.0.1:9092");
-      //props.put(,);
-      props.put("key.deserializer", StringDeserializer.class.getName());
-      props.put("client.id", InetAddress.getLocalHost().getHostName());
-      producer = new KafkaProducer(props);
-      //consumer = new KafkaConsumer(props);
-      */
-      props = new Properties();
-      props.put("zookeeper.connect","172.17.0.1:2181");
-      props.put("bootstrap.servers", "172.17.0.1:9092");
 
-      props.put("acks", "all");
-      props.put("retries", 1);
-      props.put("auto.commit.interval.ms", "1000");
-      props.put("batch.size", 10);
-      props.put("linger.ms", 5);
-      props.put("buffer.memory", 33554432);
-      props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
-      props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+      props = new Properties();
+      props.load(KafkaProducerService.class.getResourceAsStream("/producer.props"));
+      //      props.put("zookeeper.connect","172.17.0.1:2181");
+      //      props.put("bootstrap.servers", "172.17.0.1:9092");
+      //
+      //      props.put("acks", "all");
+      //      props.put("retries", 1);
+      //      props.put("auto.commit.interval.ms", "1000");
+      //      props.put("batch.size", 10);
+      //      props.put("linger.ms", 5);
+      //      props.put("buffer.memory", 33554432);
+      //      props.put("key.serializer", "org.apache.kafka.common.serialization.StringSerializer");
+      //      props.put("value.serializer", "org.apache.kafka.common.serialization.StringSerializer");
 
       producer = new KafkaProducer<>(props);
 
-
     }
     log.info("going to send");
-    for(int i = 0; i < 100; i++) {
-      producer.send(new ProducerRecord<String, String>("martijn1", Integer.toString(i), "martijn is "+i));
+    for (int i = 0; i < 100; i++) {
+      producer.send(new ProducerRecord<String, String>("martijn1", Integer.toString(i), "martijn is " + i));
     }
     log.info("send one");
     producer.flush();
-    //producer.close();
 
-   // producer.flush();
-   // producer.close();
-/*
-    ConsumerRecords<String, String> records = consumer.poll(Long.MAX_VALUE);
-    log.info("revords "+records);
-    if (records!=null){
-      log.info("records lengte = "+records.count());
-    }
-    for (ConsumerRecord<String, String> record : records) {
-      Map<String, Object> data = new HashMap();
-      data.put("partition", record.partition());
-      data.put("offset", record.offset());
-      data.put("value", record.value());
-      System.out.println( ": " + data);
-    }*/
   }
 }

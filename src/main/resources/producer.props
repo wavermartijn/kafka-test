@@ -1,12 +1,13 @@
 
-advertised.hostname=localhost
-advertised.host.name=localhost
+
+zookeeper.connect=172.17.0.1:2181
+bootstrap.servers=172.17.0.1:9092
 advertised.port=2181
 acks=all
 retries=1
 batch.size=10
 auto.commit.interval.ms=1000
-linger.ms=0
+linger.ms=5
 key.serializer=org.apache.kafka.common.serialization.StringSerializer
 value.serializer=org.apache.kafka.common.serialization.StringSerializer
-block.on.buffer.full=true
+buffer.memory=33554432
