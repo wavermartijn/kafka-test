@@ -4,13 +4,14 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 
 @Slf4j
 @RestController
-public class TestController {
+public class KafkaController {
 
 
   @Autowired
@@ -21,6 +22,13 @@ public class TestController {
     log.info("going to call the kafkaProducerService");
     kafkaProducerService.produceTestMessages();
     return "done";
+  }
+
+  @RequestMapping(name="specific",method = RequestMethod.GET)
+  public String sendSpecificMessage(@RequestParam String messageToSend){
+    log.info("going to send a specific message");
+    kafkaProducerService.produceSpecificMessage(messageToSend);
+    return "done send requested message: "+messageToSend;
   }
 
 }
