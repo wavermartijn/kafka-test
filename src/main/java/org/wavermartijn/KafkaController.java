@@ -17,14 +17,14 @@ public class KafkaController {
   @Autowired
   KafkaProducerService kafkaProducerService;
 
-  @RequestMapping(name = "/martijn",method = RequestMethod.GET)
+  @RequestMapping(path = "/martijn",method = RequestMethod.GET)
   public String testIt() throws IOException {
     log.info("going to call the kafkaProducerService");
     kafkaProducerService.produceTestMessages();
     return "done";
   }
 
-  @RequestMapping(name="specific",method = RequestMethod.GET)
+  @RequestMapping(path="/martijn/specific",method = RequestMethod.GET)
   public String sendSpecificMessage(@RequestParam String messageToSend){
     log.info("going to send a specific message");
     kafkaProducerService.produceSpecificMessage(messageToSend);
