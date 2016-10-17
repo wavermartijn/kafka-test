@@ -14,22 +14,20 @@ import java.io.IOException;
 @RestController
 public class KafkaController {
 
-
   @Autowired
   KafkaProducerService kafkaProducerService;
 
-  @RequestMapping(path = "/test",method = RequestMethod.GET)
+  @RequestMapping(path = "/test", method = RequestMethod.GET)
   public String testIt() throws IOException {
     log.info("going to call the kafkaProducerService");
     kafkaProducerService.produceTestMessages();
     return "done";
   }
 
-  @RequestMapping(path="/specific",method = RequestMethod.GET)
-  public String sendSpecificMessage(@RequestParam String messageToSend){
+  @RequestMapping(path = "/specific", method = RequestMethod.GET)
+  public String sendSpecificMessage(@RequestParam String messageToSend) {
     log.info("going to send a specific message");
     kafkaProducerService.produceSpecificMessage(messageToSend);
-    return "done send requested message: "+messageToSend;
+    return "done send requested message: " + messageToSend;
   }
-
 }
